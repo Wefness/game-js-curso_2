@@ -1,6 +1,7 @@
+let listaDeNumerosSorteados = [];
 let numeroMinimo = 1;
-let numeroMaximo = 10;
-let numeroSecreto = gerarNumeroAleatorio(numeroMinimo, numeroMaximo);
+let numeroLimite = 10;
+let numeroSecreto = gerarNumeroAleatorio(numeroMinimo, numeroLimite);
 let tentativas = 1;
 
 function exibirTextoNaTela(tag, texto) {
@@ -11,7 +12,7 @@ function exibirTextoNaTela(tag, texto) {
 
 function exibirMensagemInicial() {
     exibirTextoNaTela('h1', 'Jogo do número secreto');
-    exibirTextoNaTela('p', `Escolha um número entre ${numeroMinimo} e ${numeroMaximo}`);
+    exibirTextoNaTela('p', `Escolha um número entre ${numeroMinimo} e ${numeroLimite}`);
 }
 
 exibirMensagemInicial();
@@ -40,11 +41,23 @@ function verificarChute() {
     limparCampo();
 }
 
-function gerarNumeroAleatorio(numeroMinimo, numeroMaximo) {
+function gerarNumeroAleatorio(numeroMinimo, numeroLimite) {
     let min = Math.ceil(numeroMinimo);
-    let max = Math.floor(numeroMaximo);
+    let max = Math.floor(numeroLimite);
+    let numeroEscolhido = Math.floor(Math.random() * (max - min + 1)) + min;
+    let quantidadeDeElementosNaLista = listaDeNumerosSorteados.length;
 
-    return Math.floor(Math.random() * (max - min + 1)) + min;
+    if(listaDeNumerosSorteados == numeroLimite) {
+        listaDeNumerosSorteados = [];
+    }
+
+    if(listaDeNumerosSorteados.includes(numeroEscolhido)) {
+        listaDeNumerosSorteados.push(numeroEscolhido);
+
+        return gerarNumeroAleatorio(numeroMinimo, numeroLimite);
+    } else {
+        return numeroEscolhido;
+    }
 }
 
 function limparCampo() {
@@ -53,7 +66,7 @@ function limparCampo() {
 }
 
 function reiniciarJogo() {
-    numeroSecreto = gerarNumeroAleatorio(numeroMinimo, numeroMaximo);
+    numeroSecreto = gerarNumeroAleatorio(numeroMinimo, numeroLimite);
     tentativas = 1;
 
     limparCampo();
