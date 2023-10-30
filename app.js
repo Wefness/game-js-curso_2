@@ -1,6 +1,6 @@
 let listaDeNumerosSorteados = [];
-let numeroMinimo = 1;
-let numeroLimite = 10;
+let numeroMinimo = prompt('Escolha o valor inicial do intervalo');
+let numeroLimite = prompt('Escolha o valor limite do intervalo');
 let numeroSecreto = gerarNumeroAleatorio(numeroMinimo, numeroLimite);
 let tentativas = 1;
 
