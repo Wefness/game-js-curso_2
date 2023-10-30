@@ -8,6 +8,7 @@ function exibirTextoNaTela(tag, texto) {
     let campo = document.querySelector(tag);
 
     campo.innerHTML = texto;
+    responsiveVoice.speak(texto, 'Brazilian Portuguese Female', {rate:1.2});
 }
 
 function exibirMensagemInicial() {
@@ -24,7 +25,7 @@ function verificarChute() {
     if(chute == numeroSecreto) {
         let palavratentativa = tentativas > 1 ? 'tentativas' : 'tentativa';
 
-        textoResposta = `Você descoriu o número secreto com ${tentativas} ${palavratentativa}!`;
+        textoResposta = `Você descobriu o número secreto com ${tentativas} ${palavratentativa}!`;
         exibirTextoNaTela('h1', 'Acertou!');
         document.getElementById('reiniciar').removeAttribute('disabled');
     } else {
