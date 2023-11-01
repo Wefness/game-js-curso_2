@@ -1,6 +1,6 @@
 let listaDeNumerosSorteados = [];
-let numeroMinimo = prompt('Escolha o valor mínimo do intervalo');
-let numeroMaximo = prompt('Escolha o valor máximo do intervalo');
+const numeroMinimo = prompt('Escolha o valor mínimo do intervalo');
+const numeroMaximo = prompt('Escolha o valor máximo do intervalo');
 let numeroSecreto = gerarNumeroAleatorio();
 let tentativas = 1;
 
@@ -71,4 +71,8 @@ function reiniciarJogo() {
     limparCampo();
     exibirMensagemInicial();
     document.getElementById('reiniciar').setAttribute('disabled', true);
+}
+
+function Test() {
+    let test = 1;
 }
