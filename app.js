@@ -1,7 +1,7 @@
 let listaDeNumerosSorteados = [];
-let numeroMinimo = prompt('Escolha o valor inicial do intervalo');
-let numeroLimite = prompt('Escolha o valor limite do intervalo');
-let numeroSecreto = gerarNumeroAleatorio(numeroMinimo, numeroLimite);
+let numeroMinimo = prompt('Escolha o valor mínimo do intervalo');
+let numeroMaximo = prompt('Escolha o valor máximo do intervalo');
+let numeroSecreto = gerarNumeroAleatorio();
 let tentativas = 1;
 
 function exibirTextoNaTela(tag, texto) {
@@ -13,7 +13,7 @@ function exibirTextoNaTela(tag, texto) {
 
 function exibirMensagemInicial() {
     exibirTextoNaTela('h1', 'Jogo do número secreto');
-    exibirTextoNaTela('p', `Escolha um número entre ${numeroMinimo} e ${numeroLimite}`);
+    exibirTextoNaTela('p', `Escolha um número entre ${numeroMinimo} e ${numeroMaximo}`);
 }
 
 exibirMensagemInicial();
@@ -42,20 +42,18 @@ function verificarChute() {
     limparCampo();
 }
 
-function gerarNumeroAleatorio(numeroMinimo, numeroLimite) {
-    let min = Math.ceil(numeroMinimo);
-    let max = Math.floor(numeroLimite);
-    let numeroEscolhido = Math.floor(Math.random() * (max - min + 1)) + min;
+function gerarNumeroAleatorio() {
+    let numeroEscolhido = Math.floor(Math.random() * (numeroMaximo - numeroMinimo + 1)) + numeroMinimo;
     let quantidadeDeElementosNaLista = listaDeNumerosSorteados.length;
 
-    if(listaDeNumerosSorteados == numeroLimite) {
+    if(listaDeNumerosSorteados == numeroMaximo) {
         listaDeNumerosSorteados = [];
     }
 
     if(listaDeNumerosSorteados.includes(numeroEscolhido)) {
         listaDeNumerosSorteados.push(numeroEscolhido);
 
-        return gerarNumeroAleatorio(numeroMinimo, numeroLimite);
+        return gerarNumeroAleatorio(numeroMinimo, numeroMaximo);
     } else {
         return numeroEscolhido;
     }
@@ -67,7 +65,7 @@ function limparCampo() {
 }
 
 function reiniciarJogo() {
-    numeroSecreto = gerarNumeroAleatorio(numeroMinimo, numeroLimite);
+    numeroSecreto = gerarNumeroAleatorio(numeroMinimo, numeroMaximo);
     tentativas = 1;
 
     limparCampo();
