@@ -1,3 +1,5 @@
+///Codigo fonte do core da aplicação!
+
 let listaDeNumerosSorteados = [];
 const numeroMinimo = prompt('Escolha o valor mínimo do intervalo');
 const numeroMaximo = prompt('Escolha o valor máximo do intervalo');
